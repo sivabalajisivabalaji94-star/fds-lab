@@ -1,0 +1,639 @@
+EX.NO:1
+a) Create NumPy arrays from Python Data Structures, Intrinsic NumPy objects and Random Functions
+
+
+Get the data type of an array object
+
+import numpy as np
+arr = np.array([1, 2, 3, 4])
+print(arr.dtype)
+
+OUTPUT:
+int64
+
+
+Get the data type of an array containing strings
+
+import numpy as np
+arr = np.array(['apple', 'banana', 'cherry'])
+print(arr.dtype)
+
+OUTPUT:
+<U6
+
+
+Create an array with data type string
+
+import numpy as np
+arr = np.array([1, 2, 3, 4], dtype='S')
+print(arr)
+print(arr.dtype)
+
+OUTPUT:
+[b'1' b'2' b'3' b'4']
+|S1
+
+
+Create an array with data type 4 bytes integer
+
+import numpy as np
+arr = np.array([1, 2, 3, 4], dtype='i4')
+print(arr)
+print(arr.dtype)
+
+OUTPUT:
+[1 2 3 4]
+int32
+
+
+Change data type from float to integer by using 'i' as parameter value
+
+import numpy as np
+arr = np.array([1.1, 2.1, 3.1])
+newarr = arr.astype('i')
+print(newarr)
+print(newarr.dtype)
+
+OUTPUT:
+[1 2 3]
+int32
+
+
+Change data type from float to integer by using int as parameter value
+
+import numpy as np
+arr = np.array([1.1, 2.1, 3.1])
+newarr = arr.astype(int)
+print(newarr)
+print(newarr.dtype)
+
+OUTPUT:
+[1 2 3]
+int64
+
+
+Change data type from integer to boolean
+
+import numpy as np
+arr = np.array([1, 0, 3])
+newarr = arr.astype(bool)
+print(newarr)
+print(newarr.dtype)
+
+OUTPUT:
+[ True False  True]
+bool
+
+
+Create NumPy arrays from Intrinsic NumPy objects
+
+import array
+arr = array.array('i', [1, 2, 3])
+print("The new created array is :",end="")
+for i in range(0,3):
+    print(arr[i], end=" ")
+print("\r")
+
+OUTPUT:
+The new created array is : 1 2 3
+
+
+Intrinsic NumPy Array Creation
+
+import numpy as np
+arr=np.arange(10)
+print(arr)
+
+OUTPUT:
+[0 1 2 3 4 5 6 7 8 9]
+
+
+import numpy as np
+arr=np.arange(2, 10, dtype=np.float)
+print(arr)
+
+OUTPUT:
+[2. 3. 4. 5. 6. 7. 8. 9.]
+
+
+import numpy as np
+arr=np.arange(2, 3, 0.1)
+print(arr)
+
+OUTPUT:
+[2.  2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9]
+
+
+Create NumPy arrays from Random Functions
+
+Generate a random integer from 0 to 100
+
+from numpy import random
+x = random.randint(100)
+print(x)
+
+OUTPUT:
+52
+
+
+Generate a random float from 0 to 1
+
+from numpy import random
+x = random.rand()
+print(x)
+
+OUTPUT:
+0.9933233154569852
+
+
+Generate a 1-D array containing 5 random integers from 0 to 100
+
+from numpy import random
+x=random.randint(100, size=(5))
+print(x)
+
+OUTPUT:
+[ 3 32 43 14 52]
+
+
+Generate a 2-D array with 3 rows, each row containing 5 random integers from 0 to 100
+
+from numpy import random
+x = random.randint(100, size=(3, 5))
+print(x)
+
+OUTPUT:
+[[90 99 11 30 34]
+ [66 40 63 36 37]
+ [63 35 89 51 58]]
+
+
+Generate a 1-D array containing 5 random floats
+
+from numpy import random
+x = random.rand(5)
+print(x)
+
+OUTPUT:
+[0.4439275
+ 0.9761481
+ 0.1597992
+ 0.7203037
+ 0.9134485]
+
+
+b) Manipulation of NumPy arrays – Indexing, Slicing, Reshaping, Joining and Splitting
+
+
+Indexing
+
+Get the first element from the following array
+
+import numpy as np
+arr = np.array([1, 2, 3, 4])
+print(arr[0])
+
+OUTPUT:
+1
+
+
+Get third and fourth elements from the following array and add them
+
+import numpy as np
+arr = np.array([1, 2, 3, 4])
+print(arr[2] + arr[3])
+
+OUTPUT:
+7
+
+
+Slicing
+
+Slice elements from index 1 to index 5 from the array
+
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+print(arr[1:5])
+
+OUTPUT:
+[2 3 4 5]
+
+
+Slice elements from the beginning to index 4
+
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+print(arr[:4])
+
+OUTPUT:
+[1 2 3 4]
+
+
+Reshaping
+
+Convert the 1-D array with 12 elements into a 2-D array
+
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+newarr = arr.reshape(4, 3)
+print(newarr)
+
+OUTPUT:
+[[ 1  2  3]
+ [ 4  5  6]
+ [ 7  8  9]
+ [10 11 12]]
+
+
+Convert the following 1-D array with 12 elements into a 3-D array
+
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+newarr = arr.reshape(2, 3, 2)
+print(newarr)
+
+OUTPUT:
+[[[ 1  2]
+  [ 3  4]
+  [ 5  6]]
+
+ [[ 7  8]
+  [ 9 10]
+  [11 12]]]
+
+
+Convert 1D array with 8 elements to 3D array with 2x2 elements
+
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+newarr = arr.reshape(2, 2, -1)
+print(newarr)
+
+OUTPUT:
+[[[1 2]
+  [3 4]]
+
+ [[5 6]
+  [7 8]]]
+
+
+Convert the array into a 1D array
+
+import numpy as np
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+newarr = arr.reshape(-1)
+print(newarr)
+
+OUTPUT:
+[1 2 3 4 5 6]
+
+
+Joining
+
+Join two arrays
+
+import numpy as np
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([4, 5, 6])
+arr = np.concatenate((arr1, arr2))
+print(arr)
+
+OUTPUT:
+[1 2 3 4 5 6]
+
+
+Join two 2-D arrays along rows (axis=1)
+
+import numpy as np
+arr1 = np.array([[1, 2], [3, 4]])
+arr2 = np.array([[5, 6], [7, 8]])
+arr = np.concatenate((arr1, arr2), axis=1)
+print(arr)
+
+OUTPUT:
+[[1 2 5 6]
+ [3 4 7 8]]
+
+
+Joining Arrays Using Stack Functions
+
+import numpy as np
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([4, 5, 6])
+arr = np.stack((arr1, arr2), axis=1)
+print(arr)
+
+OUTPUT:
+[[1 4]
+ [2 5]
+ [3 6]]
+
+
+Splitting
+
+Split the array in 3 parts
+
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5, 6])
+newarr = np.array_split(arr, 3)
+print(newarr)
+
+OUTPUT:
+[array([1, 2]),
+ array([3, 4]),
+ array([5, 6])]
+
+
+Split the array in 4 parts
+
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5, 6])
+newarr = np.array_split(arr, 4)
+print(newarr)
+
+OUTPUT:
+[array([1, 2]),
+ array([3, 4]),
+ array([5]),
+ array([6])]
+
+
+Access the splitted arrays
+
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5, 6])
+newarr = np.array_split(arr, 3)
+print(newarr[0])
+print(newarr[1])
+print(newarr[2])
+
+OUTPUT:
+[1 2]
+[3 4]
+[5 6]
+
+
+Split the 2-D array into three 2-D arrays
+
+import numpy as np
+arr = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12]])
+newarr = np.array_split(arr, 3)
+print(newarr)
+
+OUTPUT:
+[array([[1, 2],
+       [3, 4]]),
+ array([[5, 6],
+       [7, 8]]),
+ array([[ 9, 10],
+       [11, 12]])]
+
+
+Split the 2-D array into three 2-D arrays along rows
+
+import numpy as np
+arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9],
+                [10, 11, 12], [13, 14, 15], [16, 17, 18]])
+newarr = np.array_split(arr, 3, axis=1)
+print(newarr)
+
+OUTPUT:
+[array([[ 1],
+       [ 4],
+       [ 7],
+       [10],
+       [13],
+       [16]]),
+ array([[ 2],
+       [ 5],
+       [ 8],
+       [11],
+       [14],
+       [17]]),
+ array([[ 3],
+       [ 6],
+       [ 9],
+       [12],
+       [15],
+       [18]])]
+
+
+c) Computation on NumPy arrays using Universal Functions and Mathematical methods
+
+
+Create your own ufunc for addition
+
+import numpy as np
+
+def myadd(x, y):
+    return x+y
+
+myadd = np.frompyfunc(myadd, 2, 1)
+print(myadd([1, 2, 3, 4], [5, 6, 7, 8]))
+
+OUTPUT:
+[6 8 10 12]
+
+
+Check if a function is a ufunc
+
+import numpy as np
+print(type(np.add))
+
+OUTPUT:
+<class 'numpy.ufunc'>
+
+
+Use an if statement to check if the function is a ufunc or not
+
+import numpy as np
+
+if type(np.add) == np.ufunc:
+    print('add is ufunc')
+else:
+    print('add is not ufunc')
+
+OUTPUT:
+add is ufunc
+
+
+Computation on NumPy arrays using Mathematical methods
+
+Compute the values sin(2 x)
+
+import numpy as np
+x = np.arange(0,1.25,0.25)
+print(x)
+y=np.sin(2*np.pi*x)
+print(y)
+
+OUTPUT:
+[0.   0.25 0.5  0.75 1.  ]
+[ 0.0000000e+00
+  1.0000000e+00
+  1.2246468e-16
+ -1.0000000e+00
+ -2.4492936e-16]
+
+
+Convert all of the values in following array arr to radians
+
+import numpy as np
+arr = np.array([90, 180, 270, 360])
+x = np.deg2rad(arr)
+print(x)
+
+OUTPUT:
+[1.57079633
+ 3.14159265
+ 4.71238898
+ 6.28318531]
+
+
+Find the angle of 1.0
+
+import numpy as np
+x = np.arcsin(1.0)
+print(x)
+
+OUTPUT:
+1.5707963267948966
+
+
+d) Import a CSV file and perform various Statistical and Comparison operations on rows/columns
+
+
+Creating a NumPy array with the same number of rows and columns
+
+import csv
+
+with open("winequality-red.csv", 'r') as f:
+    wines = list(csv.reader(f, delimiter=";"))
+
+import numpy as np
+
+wines = np.array(wines[1:], dtype=np.float)
+wines
+
+OUTPUT:
+NumPy array containing the wine-quality dataset is displayed.
+
+
+Calculate the mean value across an array
+
+import pandas as pd
+
+df = pd.read_csv('winequality-red.csv',
+                 delimiter=';',
+                 decimal=',')
+
+fixedacidity_median = df['fixed acidity'].median()
+
+print('fixedacidity_median: {}'.format(fixedacidity_median))
+
+OUTPUT:
+fixedacidity median = 7.9
+
+
+Display which wines have a quality rating higher than 5
+
+wines[:,11] > 5
+
+OUTPUT:
+array([False, False, False, ..., True, False, True],
+      dtype=bool)
+
+
+Display if any wines have a quality rating equal to 10
+
+wines[:,11] == 10
+
+OUTPUT:
+array([False, False, False, ..., False, False, False],
+      dtype=bool)
+
+
+Select rows in wines where the quality is over 7
+
+high_quality = wines[:,11] > 7
+wines[high_quality,:][:3,:]
+
+OUTPUT:
+array([[7.90000000e+00,
+        3.50000000e-01,
+        4.60000000e-01,
+        3.60000000e+00,
+        7.80000000e-02,
+        1.50000000e+01,
+        3.70000000e+01,
+        9.97300000e-01,
+        3.35000000e+00,
+        8.60000000e-01,
+        1.28000000e+01,
+        8.00000000e+00],
+       ...])
+
+
+Look for wines with a lot of alcohol and high quality
+
+high_quality_and_alcohol = (wines[:,10] > 10) & (wines[:,11] > 7)
+wines[high_quality_and_alcohol,10:]
+
+OUTPUT:
+array([[12.8, 8. ],
+       [12.6, 8. ],
+       [12.9, 8. ],
+       [13.4, 8. ],
+       [11.7, 8. ],
+       [11. , 8. ],
+       [11. , 8. ],
+       [14. , 8. ],
+       [12.7, 8. ],
+       [12.5, 8. ],
+       [11.8, 8. ],
+       [13.1, 8. ],
+       [11.7, 8. ],
+       [14. , 8. ],
+       [11.3, 8. ],
+       [11.4, 8. ]]
+
+
+e) Load an image file and do crop and flip operation using NumPy Indexing
+
+
+Loading image
+
+import imageio as iio
+
+img = iio.imread("emma_stone.jpg")
+iio.imwrite("emma_stone.jpg", img)
+
+OUTPUT:
+Image is loaded successfully.
+
+
+Cropping Image
+
+from PIL import Image
+
+Image1 = Image.open('emma_stone.jpg')
+croppedIm = Image1.crop((130, 120, 200, 200))
+croppedIm.show()
+
+OUTPUT:
+Cropped image is displayed.
+
+
+Flipping image
+
+img0 = img.copy()
+
+for i in range(img0.shape[0] // 2):
+    c = img0[i, :, :].copy()
+    img0[i, :, :] = img0[img0.shape[0] - i - 1, :, :]
+    img0[img0.shape[0] - i - 1, :, :] = c
+
+plt.imshow(img0)
+
+OUTPUT:
+Flipped image is displayed.
