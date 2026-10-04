@@ -1,0 +1,112 @@
+TOPIC: Implementation of Logistic Regression Model for the given data
+
+# prepare the models - {LR, LDA, KNN, CART, RF, NB, SVM}
+num_trees = 200
+max_features = 3
+models = []
+models.append(('LR', LogisticRegression()))
+models.append(('LDA', LinearDiscriminantAnalysis()))
+models.append(('KNN', KNeighborsClassifier()))
+models.append(('CART', DecisionTreeClassifier()))
+models.append(('RF', RandomForestClassifier(n_estimators=num_trees, max_features=max_features)))
+models.append(('NB', GaussianNB()))
+models.append(('SVM', SVC()))
+
+# fit the models and evaluate it
+results = []
+names = []
+scoring = 'accuracy'
+
+# evaluate each model using 10-FOLD cross validation
+for name, model in models:
+    kfold = KFold(n_splits=10, random_state=7)
+    cv_results = cross_val_score(model, X_train, Y_train, cv=kfold, scoring=scoring)
+    results.append(cv_results)
+    names.append(name)
+    msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
+    print(msg)
+
+OUTPUT:
+LR: 0.694444 (0.087841)
+LDA: 0.700000 (0.088541)
+KNN: 0.658333 (0.079592)
+CART: 0.636111 (0.060157)
+RF: 0.677778 (0.041574)
+NB: 0.688889 (0.088541)
+SVM: 0.658333 (0.093830)
+
+
+# boxplots for ML algorithm comparison
+fig = pyplot.figure()
+fig.suptitle('Machine Learning algorithms comparison')
+ax = fig.add_subplot(111)
+pyplot.boxplot(results)
+ax.set_xticklabels(names)
+pyplot.show()
+
+OUTPUT:
+Machine Learning algorithms comparison
+(Boxplot displayed)
+
+
+# create the model
+model = LogisticRegression()
+
+# fit the model
+model.fit(X_train, Y_train)
+
+# make predictions on the test data
+predictions = model.predict(X_test)
+
+# compute the overall accuracy and display the classification report
+print("Model --> Logistic Regression")
+print("Overall Accuracy: {}").format(accuracy_score(Y_test, predictions) * 100)
+print(classification_report(Y_test, predictions))
+
+OUTPUT:
+Model --> Logistic Regression
+Overall Accuracy: 77.5
+
+              precision    recall  f1-score   support
+0.0              0.81      0.94      0.87        31
+1.0              0.50      0.22      0.31         9
+avg / total       0.74      0.78      0.74        40
+
+
+# plot confusion matrix and display the heatmap
+%matplotlib inline
+cm = confusion_matrix(Y_test, predictions)
+sns.heatmap(cm,
+    annot=True,
+    xticklabels=['reject', 'admit'],
+    yticklabels=['reject', 'admit'])
+plt.figure(figsize=(3,3))
+sns.plt.show()
+
+OUTPUT:
+<matplotlib.figure.Figure at 0x19dd3990>
+
+
+# make prediction on a new test data - (gre_score, gpa_grade, rank)
+new_data = [(720, 4, 1), (300, 2, 1), (400, 4, 4)]
+
+# convert the list of tuples to numpy array
+new_array = np.asarray(new_data)
+
+# the output labels
+labels = ["reject", "admit"]
+
+# make prediction
+prediction = model.predict(new_array)
+
+# get the no.of.test cases used
+no_of_test_cases, cols = new_array.shape
+
+# show the result
+for i in range(no_of_test_cases):
+    print("Status of STUDENT with GRE score= {}, GPA grade= {}, Rank= {} will be --> {}".format(new_data[i][0], new_data[i][1], new_data[i][2], labels[int(prediction[i])]))
+
+OUTPUT:
+Status of STUDENT with GRE score= 720, GPA grade= 4, Rank= 1 will be --> admit
+Status of STUDENT with GRE score= 300, GPA grade= 2, Rank= 1 will be --> reject
+Status of STUDENT with GRE score= 400, GPA grade= 4, Rank= 4 will be --> reject
