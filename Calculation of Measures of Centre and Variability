@@ -1,0 +1,151 @@
+EX.NO.6
+TOPIC: CALCULATION OF MEASURES OF CENTRE AND VARIABILITY FOR THE GIVEN DATA
+
+a) Measures of Centre
+
+import pandas as pd
+
+df = pd.DataFrame({
+    'ID': ['1', '2', '3', '4', '5'],
+    'Name': ['CS', 'SE', 'SE', 'SE', 'CS'],
+    'Department': ['cse', 'eee', 'ece', 'it', 'AI'],
+    'Year': ['3', '2', '1', '4', '1'],
+    'Subject_Marks':[72,73,72,72,73]
+})
+
+display(df)
+
+dataMatrix = {
+    "Subject_Marks":[72, 73, 72, 72, 73]
+}
+
+dataFrame = pd.DataFrame(data=dataMatrix)
+
+print("DataFrame:")
+print(dataFrame)
+
+print("Mean:Computed column-wise:")
+meanData = dataFrame.mean()
+print(meanData)
+
+print("Mean:Computed row-wise:")
+meanData = dataFrame.mean(axis=1)
+print(meanData)
+
+print("Median:Computed column-wise:")
+medianData = dataFrame.median()
+print(medianData)
+
+print("Median:Computed row-wise:")
+medianData = dataFrame.median(axis=1)
+print(medianData)
+
+print("Mode:Computed column-wise:")
+modeData = dataFrame.mode()
+print(modeData)
+
+print("Mode:Computed row-wise:")
+modeData = dataFrame.mode(axis=1)
+print(modeData)
+
+OUTPUT:
+DataFrame:
+   Subject_Marks
+0             72
+1             73
+2             72
+3             72
+4             73
+
+Mean:Computed column-wise:
+Subject_Marks    72.4
+dtype: float64
+
+Mean:Computed row-wise:
+0    72.0
+1    73.0
+2    72.0
+3    72.0
+4    73.0
+dtype: float64
+
+Median:Computed column-wise:
+Subject_Marks    72.0
+dtype: float64
+
+Median:Computed row-wise:
+0    72.0
+1    73.0
+2    72.0
+3    72.0
+4    73.0
+dtype: float64
+
+Mode:Computed column-wise:
+   Subject_Marks
+0             72
+
+Mode:Computed row-wise:
+   0
+0  72
+1  73
+2  72
+3  72
+4  73
+
+
+b) Measures of Variability
+
+import pandas as pd
+import numpy as np
+import statistics as st
+
+df = pd.DataFrame({
+    'ID': ['1', '2', '3', '4', '5'],
+    'Name': ['CS', 'SE', 'SE', 'SE', 'CS'],
+    'Department': ['cse', 'eee', 'ece','it', 'AI'],
+    'Year': ['3', '2', '1', '4', '1'],
+    'Subject_Marks':[72,73,72,72,73]
+})
+
+display(df)
+
+print(df.shape)
+print(df.info())
+
+dataMatrix = {
+    "Subject_Marks":[72, 73, 72, 72, 73]
+}
+
+dataFrame = pd.DataFrame(data=dataMatrix)
+
+print(dataFrame.std())
+print(dataFrame.var())
+
+from scipy.stats import iqr
+print(iqr(dataFrame['Subject_Marks']))
+
+dataFrame.describe(include='all')
+
+OUTPUT:
+(5, 5)
+
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 5 entries, 0 to 4
+Data columns (total 5 columns):
+ 0 ID              5 non-null object
+ 1 Name            5 non-null object
+ 2 Department      5 non-null object
+ 3 Year            5 non-null object
+ 4 Subject_Marks   5 non-null int64
+
+Subject_Marks    0.547723
+dtype: float64
+
+Subject_Marks    0.3
+dtype: float64
+
+1.0
+
+RESULT:
+Thus, the program for calculating measures of variability for the given student data was executed and verified successfully.
