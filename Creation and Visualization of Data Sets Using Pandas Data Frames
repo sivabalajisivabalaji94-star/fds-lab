@@ -1,0 +1,127 @@
+EX.NO.2
+TOPIC: CREATION AND VISUALIZATION OF DATA SETS USING PANDAS DATA FRAMES
+
+a) Create Pandas Series and DataFrame from various inputs
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+author = ['Jitender', 'Purnima', 'Arpit', 'Jyoti']
+auth_series = pd.Series(author)
+print(auth_series)
+
+OUTPUT:
+0    Jitender
+1    Purnima
+2    Arpit
+3    Jyoti
+dtype: object
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+author = ['Jitender', 'Purnima', 'Arpit', 'Jyoti']
+article = [210, 211, 114, 178]
+
+auth_series = pd.Series(author)
+article_series = pd.Series(article)
+
+frame = {'Author': auth_series, 'Article': article_series}
+result = pd.DataFrame(frame)
+
+age = [21, 21, 24, 23]
+result['Age'] = pd.Series(age)
+
+print(result)
+
+OUTPUT:
+     Author  Article  Age
+0  Jitender      210   21
+1   Purnima      211   21
+2     Arpit      114   24
+3     Jyoti      178   23
+
+
+b) Visualize the first and last 10 records
+
+df = pd.read_csv('employees.csv')
+df.head(10)
+
+OUTPUT:
+First 10 records of the DataFrame are displayed.
+
+
+df.tail(10)
+
+OUTPUT:
+Last 10 records of the DataFrame are displayed.
+
+
+c) Get the shape, index and column details
+
+shape = df.shape
+print('\nDataFrame Shape :', shape)
+print('\nNumber of rows :', shape[0])
+print('\nNumber of columns :', shape[1])
+
+OUTPUT:
+DataFrame Shape : (1599, 1)
+Number of rows : 1599
+Number of columns : 1
+
+
+d) Perform ranking and sorting operations
+
+df["Rank"] = df["Salary"].rank()
+df
+
+df.sort_values("Salary", inplace=True)
+df
+
+OUTPUT:
+Rank column is created and the DataFrame is sorted according to Salary.
+
+
+e) Statistical operations
+
+mean = df['Salary'].mean()
+print(mean)
+
+OUTPUT:
+90662.181
+
+
+median = df['Bonus %'].median()
+print(median)
+
+OUTPUT:
+9.8385
+
+
+f) Count and uniqueness
+
+count = df['Bonus %'].count()
+print(count)
+
+OUTPUT:
+1000
+
+
+s = pd.value_counts(df.Salary)
+s1 = pd.Series({'nunique': len(s), 'unique values': s.index.tolist()})
+s.append(s1)
+
+OUTPUT:
+Unique values and count are displayed.
+
+
+g) Rename column
+
+df3 = df.rename(columns={'Team':'Team_name'}, inplace=True)
+
+OUTPUT:
+Team column is renamed as Team_name.
+
+RESULT:
+Thus, creation and visualization of data sets using pandas data frames were verified and executed successfully.
