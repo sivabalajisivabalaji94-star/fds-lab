@@ -1,0 +1,108 @@
+EX.NO.3
+TOPIC: IMPLEMENTATION OF DATA HANDLING FUNCTIONS
+
+a) Handle missing data using isnull()
+
+import pandas as pd
+
+data = pd.read_csv("employees.csv")
+bool_series = pd.isnull(data["Team"])
+data[bool_series]
+
+OUTPUT:
+Rows containing NULL values in Team column are displayed.
+
+
+b) Using notnull()
+
+import pandas as pd
+
+data = pd.read_csv("employees.csv")
+bool_series = pd.notnull(data["Gender"])
+data[bool_series]
+
+OUTPUT:
+Rows containing NON-NULL values in Gender column are displayed.
+
+
+c) Dropping rows with null values
+
+import pandas as pd
+
+data = pd.read_csv("employees.csv")
+new_data = data.dropna(axis=0, how='any')
+new_data
+
+OUTPUT:
+Rows containing NULL values are removed.
+
+
+d) Replacing NaN values
+
+import pandas as pd
+
+nba = pd.read_csv("nba.csv")
+nba["College"].fillna("No College", inplace=True)
+nba
+
+OUTPUT:
+NaN values in College column are replaced with No College.
+
+
+e) Data transformation using apply()
+
+import pandas as pd
+
+data = pd.read_csv("stock.csv")
+data['New'] = data['Close'].apply(lambda x: x * 2)
+data
+
+OUTPUT:
+Transformed values are displayed.
+
+
+f) Data transformation using map()
+
+import pandas as pd
+
+data = pd.read_csv("employees.csv")
+data['Gender'] = data['Gender'].map({'Male': 1, 'Female': 2})
+data
+
+OUTPUT:
+Male and Female values are mapped to numerical values.
+
+
+g) Detect and filter outliers
+
+import pandas as pd
+
+data = pd.read_csv("employees.csv")
+data.describe()
+
+OUTPUT:
+Statistical description of the dataset is displayed.
+
+
+h) Vectorized String Operations
+
+import pandas as pd
+
+data = pd.read_csv("employees.csv")
+
+data["Team"] = data["Team"].str.upper()
+data["Team"]
+
+OUTPUT:
+Team names are converted to uppercase.
+
+
+data["Team"] = data["Team"].str.lower()
+data["Team"]
+
+OUTPUT:
+Team names are converted to lowercase.
+
+
+RESULT:
+Thus, various data handling functions such as missing data handling, data transformation, outlier detection and string vectorization were executed successfully.
