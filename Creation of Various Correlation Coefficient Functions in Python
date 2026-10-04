@@ -1,0 +1,96 @@
+EX.NO.8
+TOPIC: CREATION OF VARIOUS CORRELATION COEFFICIENT FUNCTIONS IN PYTHON
+
+a) Plot the correlation plot on dataset and visualize relationships on Iris data
+
+import pandas as pd
+
+df = pd.read_csv("Iris.csv")
+
+df.head()
+df.shape
+
+OUTPUT:
+(150, 6)
+
+
+df.isnull().sum()
+
+OUTPUT:
+Null values in the dataset are displayed.
+
+
+data = df.drop_duplicates(subset="Species")
+data
+
+OUTPUT:
+Duplicate Species records are removed and the DataFrame is displayed.
+
+
+df.value_counts("Species")
+
+OUTPUT:
+Frequency count of each Species is displayed.
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.countplot(x='Species', data=df)
+plt.show()
+
+OUTPUT:
+Count plot of Iris Species is displayed.
+
+
+b) Find the Correlation Matrix
+
+data.corr(method='pearson')
+
+OUTPUT:
+Pearson correlation matrix of numeric columns is displayed.
+
+
+import seaborn as sns
+
+corr = dataframe.corr()
+
+sns.heatmap(
+    corr,
+    xticklabels=corr.columns.values,
+    yticklabels=corr.columns.values
+)
+
+sns.plt.show()
+
+OUTPUT:
+Correlation matrix heatmap is displayed.
+
+
+c) Analysis of Covariance: ANOVA
+
+import pandas as pd
+import scipy.stats as stats
+
+df = pd.read_csv("Iris.csv")
+
+setosa = df[df['Species'] == 'Iris-setosa']
+versicolor = df[df['Species'] == 'Iris-versicolor']
+virginica = df[df['Species'] == 'Iris-virginica']
+
+fvalue, pvalue = stats.f_oneway(
+    setosa['SepalWidthCm'],
+    versicolor['SepalWidthCm'],
+    virginica['SepalWidthCm']
+)
+
+print("F-Value :", fvalue)
+print("P-Value :", pvalue)
+
+OUTPUT:
+F-Value : ANOVA F-statistic is displayed
+P-Value : ANOVA P-value is displayed
+
+
+RESULT:
+Thus, the program for creation of various correlation coefficient functions in Python was executed and verified successfully.
